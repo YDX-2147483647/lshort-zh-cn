@@ -48,11 +48,13 @@
 \end{itemize}
 另外也可以下载在线安装程序 \texttt{install-tl.zip}，包含以上所有安装脚本。安装过程中会从 CTAN 软件源下载所有组件。
 
-Linux 下 \hologo{TeXLive} 安装完毕后，一般还需要在 root 权限下进行以下操作，使得 \hologo{XeLaTeX} 能正确通过 \pkg{fontspec}
-等宏包使用字体\footnote{\url{https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf}，
-可用 \texttt{texdoc texlive-zh-cn} 在本地打开。}：
+Linux 下 \hologo{TeXLive} 安装完毕后，一般还需要在 root 权限\footnote{
+  若无 root 权限，也有用户级配置方法。详见 \url{https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf}，可用 \texttt{texdoc texlive-zh-cn} 在本地打开。
+}下进行以下操作，否则 \hologo{XeTeX} 不支持按字体的英文名称调用 \TeX{} 发行版中的字体\footnote{
+  若不操作，亦可按字体的文件名调用；无论是否操作，调用系统字体都不受限制，\hologo{LuaTeX} 也不受限制。调用字体需使用 \pkg{fontspec} 宏包，详见~\ref{subsec:fontspec}~节。
+}：
 \begin{enumerate}
-  \item 将 \texttt{texlive-fontconfig.conf} 文件复制到 \texttt{/etc/fonts/conf.d/09-texlive.conf}。
+  \item 将 \texttt{texlive-fontconfig.conf} 文件\footnote{运行 \texttt{kpsewhich --expand-var '\$TEXMFVAR/fonts/conf/'} 可查看该文件所在目录。}复制到 \texttt{/etc/fonts/conf.d/09-texlive.conf}。
   \item 运行 \texttt{fc-cache -fsv}。
 \end{enumerate}
 
